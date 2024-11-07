@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .pass {
+            color: green;
+        }
+        .fail {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Testes de Calculadora</h2>
+
+<div id="resultados"></div>
+
+<script>
+   
+    function somar(x, y) {
+        return x + y;
+    }
+
+    function subtrair(x, y) {
+        return x - y;
+    }
+
+    function multiplicar(x, y) {
+        return x * y;
+    }
+
+    function dividir(x, y) {
+        if (y === 0) { 
+            throw new Error("Não é possível dividir por zero"); // throw new Error é uma maneira de criar e lançar um erro manualmente, que interrompe o fluxo normal de execução e pode ser tratado em um bloco catch.
+        }
+        return x / y;
+    }
+
+    // Função para exibir resultados no HTML
+    function mostrarResultado(mensagem, passou) {
+        const resultadoDiv = document.getElementById('resultados');
+        const resultado = document.createElement('p'); // novo elemento <p> (parágrafo) que será criado dinamicamente.
+        resultado.className = passou ? 'pass' : 'fail'; // : significa operador ternário, verificará se passou ou falhou.
+        resultado.textContent = (passou ? '✔️' : '❌') + ' ' + mensagem; // textContent definine o texto que será exibido no 'p'
+        resultadoDiv.appendChild(resultado); // o elemento resultado está sendo adicionado como um filho do elemento resultadoDiv.
+    }
+
+    // Função de teste simples
+    function teste(mensagem, condicao) {
+        mostrarResultado(mensagem, condicao); // mensagem o texto que será exibido e condicao será a ideia do passou ou falhou.
+    }
+
+    // Executando os testes
+    try {
+        teste('somar 2 + 3 deve resultar em 5', somar(2, 3) === 5);
+        teste('subtrair 5 - 3 deve resultar em 2', subtrair(5, 3) === 2);
+        teste('multiplicar 2 * 3 deve resultar em 6', multiplicar(2, 3) === 6);
+        teste('dividir 6 / 3 deve resultar em 2', dividir(6,3 ) === 2);
+
+        // Teste para divisão por zero
+        try {
+            dividir(6, 0);
+            teste('dividir por zero deve lançar um erro', false);  // Deve falhar
+        } catch (erro) {
+            teste('dividir por zero deve lançar um erro', erro.message === 'Não é possível dividir por zero');
+        }
+
+    } catch (erro) {
+        mostrarResultado('Erro inesperado: ' + erro.message, false);
+    }
+
+</script>
+
+</body>
+</html>
+

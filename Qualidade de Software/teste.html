@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação de Cadastro</title>
+    <style>
+       
+        .pass { color: green; }
+        .fail { color: red; }
+    </style>
+</head>
+<body>
+    <h2>Verificação de Cadastro</h2>
+
+    <!-- Formulário para entrada de dados -->
+    
+Nome:<input id="nome"><br><br>
+Idade:<input id="idade"><br><br>
+CPF:<input id="CPF"><br><br>
+
+
+<button onclick="verificarCadastro();href='teste2.hmtl'">Verificar</button>
+
+    <h3>Resultados:</h3>
+    <div id="resultados"></div>
+
+    <script>
+        // Função para verificar nome e idade
+        function verificarCadastro() {
+            // Limpar resultados anteriores
+            const resultadosDiv = document.getElementById('resultados');
+            resultadosDiv.innerHTML = '';
+
+            // Obter valores de entrada
+            const nome = document.getElementById('nome').value;
+            const idade =document.getElementById('idade').value;
+            const CPF=document.getElementById('CPF').value;
+
+            // Validar nome (deve ter pelo menos 3 letras)
+            if (nome.length >= 3) {
+                resultadosDiv.innerHTML += '<p class="pass">✔️ Nome válido</p>';
+            } else {
+                resultadosDiv.innerHTML += '<p class="fail">❌ Nome inválido (mínimo 3 letras)</p>';
+            }
+
+            // Validar idade (deve estar entre 18 e 120 anos)
+            if (idade >= 18 && idade <= 120) {
+                resultadosDiv.innerHTML += '<p class="pass">✔️ Idade válida</p>';
+            } else {
+                resultadosDiv.innerHTML += '<p class="fail">❌ Idade inválida (deve ser entre 18 e 120 anos)</p>';
+            }
+            if(CPF.length===11){
+                resultadosDiv.innerHTML += '<p class=pass>✔️ CPF válido </p>';
+            } else{
+                resultadosDiv.innerHTML += '<p class=fail> x CPF inválido(quantidade errada de dígitos) </p>'
+            }
+        }
+    </script>
+</body>
+</html>

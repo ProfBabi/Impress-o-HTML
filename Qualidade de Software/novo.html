@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação de Cadastro</title>
+    <style>
+       
+        .pass { color: green; }
+        .fail { color: red; }
+    </style>
+</head>
+<body>
+    <h2>Verificação de Cadastro</h2>
+
+    <!-- Formulário para entrada de dados -->
+    
+Nome:<input id="nome"><br><br>
+Idade:<input id="idade"><br><br>
+CPF:<input id="CPF"><br><br>
+
+
+<button onclick="verificarCadastro()">Verificar</button>
+
+    <h3>Resultados:</h3>
+    <div id="resultados"></div>
+
+    <script>
+        // Função para verificar nome e idade
+        function verificarCadastro() {
+            // Limpar resultados anteriores
+            const resultadosDiv = document.getElementById('resultados');
+            resultadosDiv.innerHTML = '';
+
+            // Obter valores de entrada
+            const nome = document.getElementById('nome').value;
+            const idade =document.getElementById('idade').value;
+            const CPF=document.getElementById('CPF').value;
+
+           // Validar idade (deve estar entre 18 e 120 anos)
+            if (nome.length >= 3 && idade >= 18 && idade <= 120 && CPF.length === 11 && !isNaN(CPF)) {//isnNAN verifica se o CPF é um número.
+                sessionStorage.setItem('nome', nome); // sessionStorage.setItem:permite armazenar dados temporariamente no navegador durante a sessão atual.
+            sessionStorage.setItem('idade', idade);
+            sessionStorage.setItem('CPF', CPF);
+                window.location.href = 'teste2.html'; // Redireciona para a nova página.
+            } else {
+                alert('Acesso negado: Verifique as informações e tente novamente.');
+            }
+        }
+        </script>
+        </body>
+          </html>  
+    

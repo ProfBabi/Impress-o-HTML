@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados do Cadastro</title>
+</head>
+<body>
+    <h2>Dados do Cadastro</h2>
+    <div id="dadoscadastro"></div>
+<script>
+        // Recuperar dados do sessionStorage
+        const nome = sessionStorage.getItem('nome');
+        const idade = sessionStorage.getItem('idade');
+        const CPF = sessionStorage.getItem('CPF');
+
+        // Exibir dados na página
+        if (nome && idade && CPF) {
+            document.getElementById('dadoscadastro').innerHTML = `
+                <p><strong>Nome:</strong> ${nome}</p>
+                <p><strong>Idade:</strong> ${idade}</p>
+                <p><strong>CPF:</strong> ${CPF}</p>
+            `;
+        } else {
+            document.getElementById('dadoscadastro').innerHTML = '<p>Dados não encontrados.</p>';
+        }
+    </script>
+</body>
+</html>
